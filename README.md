@@ -13,13 +13,20 @@
 ### 2-ой этап(Runtime Data Area)
 * Подсистема загрузки классов загрузила наши класс(JvmComprehension) и системные классы(Object, Integer, String и т.к.) в область памяти Metaspace(В MetaSpace хранятся данные о классах)
 * Далее происходит вызов метода main, в момент его вызова создаётся фрейм в стеке(области памяти под названием Stack Memory).
-*![](https://github.com/DaniilVenikov/core_10.1_JVM-pictures-/blob/origin/2-ой%20скрин.png)
+![](https://github.com/DaniilVenikov/core_10.1_JVM-pictures-/blob/origin/2-ой%20скрин.png)
 * //1: так как переменная i является примитивом, то при создании она будет записана в стек во фрейм main и ей будет присвоено значение 1.
+![](https://github.com/DaniilVenikov/core_10.1_JVM-pictures-/blob/origin/3-ий%20скрин.png)
 * //2: сначала будет выполнено выделение памяти под объект(new Object) в куче(heap), затем в стеке создаётся переменная o, которой присваивается ссылка на объект из кучи
+![](https://github.com/DaniilVenikov/core_10.1_JVM-pictures-/blob/origin/4-ый%20скрин.png)
 * //3: выделенеи памяти в стеке для переменной ii и присвоение ей значения 2
+![](https://github.com/DaniilVenikov/core_10.1_JVM-pictures-/blob/origin/5-ый%20скрин.png)
 * //4: в стеке создаётся ещё один фрейм printAll, параметру o, метода printAll будет присвоена ссылка на ранее созданный объект o из кучи, оставшимся 2-м параметрам i и ii будут созданы значения 1 и 2, соответсвенно, в стеке во фрейме printAll 
+![](https://github.com/DaniilVenikov/core_10.1_JVM-pictures-/blob/origin/6-ой%20скрин.png)
 * //5: в стеке, во фрейме printAll создаётся переменная uselessVar и ей присвается значение 700
+![](https://github.com/DaniilVenikov/core_10.1_JVM-pictures-/blob/origin/7-ой%20скрин.png)
 * //6: создаётся ещё один фрейм под метод println, внутри него будет вызван метод toString, под который в свою очередь тоже будет создан новый фрейм. Метод toStrin отработает, указатель стека передвинется на фрейм println, что будет означать, что данные фрейма toString будут удалены. Метод printl выполнит свою работу указатель стека опять передвинится.
+![](https://github.com/DaniilVenikov/core_10.1_JVM-pictures-/blob/origin/8-ой%20скрин.png)
 * //7: создатся фрейм в стеке под метод println, он выведет значение на экран, затем фрейм удалится из стека, за ним закончит своё выполнение и метод main
+1[](https://github.com/DaniilVenikov/core_10.1_JVM-pictures-/blob/origin/9-ый%20скрин.png)
 
 Так как у нас небольшая программа, нет циклических ссылок и все созданные объекты используются, то во время вызова сборщика мусора ничего не будет удалено из кучи
